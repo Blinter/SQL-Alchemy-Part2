@@ -4,8 +4,8 @@ from app import app
 from models import db, User, Post
 
 # Use test database and don't clutter tests with SQL
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///sqla_intro_test'
-app.config['SQLALCHEMY_ECHO'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///sqla_intro_test2'
+app.config['SQLALCHEMY_ECHO'] = False
 
 with app.app_context():
     db.drop_all()

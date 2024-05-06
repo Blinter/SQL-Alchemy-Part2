@@ -7,9 +7,9 @@ from models import db, connect_db, User, Post
 # from flask_debugtoolbar import DebugToolbarExtension
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly_part1'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly_part2'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'ihaveasecret'
+app.config['SECRET_KEY'] = 'ihaveasecret2'
 app.config['SQLALCHEMY_ECHO'] = True
 
 connect_db(app)

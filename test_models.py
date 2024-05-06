@@ -3,7 +3,7 @@ from app import app
 from models import db, User, Post
 from seed import generate_random_datetime_start, generate_random_datetime_end
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///sqla_intro_test'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///sqla_intro_test2'
 app.config['SQLALCHEMY_ECHO'] = False
 
 
