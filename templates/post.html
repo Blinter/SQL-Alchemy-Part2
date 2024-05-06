@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+Blogly Part II - Post
+{% endblock %}
+
+{% block header %}
+{{post.title}}
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+{% block content %}
+{% if post %}
+    <small>{{post.content}}</small>
+        {% endif %}
+      <hr>
+        by <a href=/users/{{post.user_id}}>{{post.user.full_name}}</a>
+      <br/><b>{{post.friendly_created_at}}</b>
+      {% if post.modified_on and
+        ((post.modified_on - post.created_at).total_seconds()//1) > 0 %}
+        <br/><i>last modified {{post.friendly_modified_on}}</i>
+{% endif %}
+        <hr>
+    <p>
+        <a href="{{post.id}}/edit" >EDIT POST</a>
+
+        <form method="POST" action="/posts/{{ post.id }}/delete">
+        <input type="submit" value="DELETE POST"></input>
+        </form><br />
+    <a href="/users/{{post.user_id}}/posts/new" >ADD NEW POST as {{post.user
+        .full_name}}</a><br /><br/>
+<hr>
+<button onclick="history.back()">GO BACK</button><br/><br/>
+<a href="/posts">GO TO POSTS</a><br/><br/>
+<a href="/users">GO TO USER LIST</a>
+</p>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+Blogly Part II - Posts
+{% endblock %}
+
+{% block header %}
+RECENT POSTS
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+{% block content %}
+<hr>
+{% if posts %}
+  {% for post in posts %}
+      <p><a href=/posts/{{post.id}}><b>{{post.title}}</b></a></p>
+    {% if post.homepage_minified %}
+    <small>{{post.homepage_content}} ...</small>
+    <br/>
+    <small><a href=/posts/{{post.id}}><i>(CONTINUED)</i></a></small>
+    {% else %}
+    <small>{{post.content}}</small>
+        {% endif %}
+      <br />
+        by <a href=/users/{{post.user_id}}>{{post.user.full_name}}</a>
+      {{post.friendly_created_at}}
+      {% if post.modified_on and
+        ((post.modified_on - post.created_at).total_seconds()//1) > 0 %}
+        <i>last modified {{post.friendly_modified_on}}</i>
+    {% endif %}
+<hr>
+  {% endfor %}
+{% endif %}
+<a href="/users">GO TO USER LIST</a>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}

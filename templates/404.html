@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+404 - Page Not Found
+{% endblock %}
+
+{% block header %}
+Oops! Page Not Found
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+
+{% block content %}
+  <p>We couldn't find the page you were looking for.</p>
+  <a href="/">Go back home</a>
+<hr>
+  Here are some posts you might enjoy:
+{% if posts %}
+  <ul>
+  {% for post in posts %}
+  <li>
+      <a href=/posts/{{post.id}}>{{post.title}}</a>
+      <br />
+      by <a href=/users/{{post.user_id}}>{{post.user.full_name}}</a>
+      <br />
+      {{post.friendly_created_at}}
+      {% if post.modified_on and
+        ((post.modified_on - post.created_at).total_seconds()//1) > 0 %}
+      <br />
+        <i>last modified {{post.friendly_modified_on}}</i>
+      {% endif %}
+  </li>
+  {% endfor %}
+  </ul>
+{% endif %}
+<button onclick="history.back()">GO BACK</button><br/><br/>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}
+

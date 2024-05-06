@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}
+Blogly Part II - User Details
+{% endblock %}
+
+{% block header %}
+USER DETAILS
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+{% block content %}
+<hr>
+<h2>{{ user.full_name }}</h2>
+<div>
+<img src="{{ user.image_url }}"
+           style="width: 50px; max-width: 50px;
+           height: 50px; max-height:50px;"></img>
+</div>
+<hr>
+<h3>POSTS</h3>
+    {% if user.posts %}
+  <table>
+    {% for post in user.posts %}
+  <tr style="border: 2px solid black">
+      <td><a href="/posts/{{ post.id }}">{{ post.title }}</a>
+          {{ post.friendly_modified_on }}</td>
+  </tr>
+  {% endfor %}
+  </table>
+    {% endif %}
+<hr>
+<div>
+    <p>
+        <a href="/users/{{ user.id }}/edit">EDIT USER</a>
+        </form>
+</a>
+    </p>
+</div>
+<div>
+    <p>
+        <form method="POST" action="/users/{{ user.id }}/delete">
+        <input type="submit" value="DELETE USER"></input>
+        </form>
+    <br/>
+    <a href="/users/{{user.id}}/posts/new" >ADD NEW POST as {{user
+        .full_name}}</a>
+    </p>
+</div>
+<hr>
+<button onclick="history.back()">GO BACK</button><br/><br/>
+<a href="/posts">GO TO POSTS</a><br/><br/>
+<a href="/users">GO TO USER LIST</a>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}

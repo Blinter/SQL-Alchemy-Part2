@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+Blogly Part II - Edit Post
+{% endblock %}
+
+{% block header %}
+EDIT POST
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+{% block content %}
+<hr>
+<form method="POST">
+  <p>Title<br /><input name="title" value="{{ post.title }}"></p>
+  <p>Content<br /><textarea name="content" cols="40" rows="10">{{ post.content
+      }}</textarea>
+  </p>
+  <input type="submit" value="SAVE"></input>
+</form>
+<hr>
+<form method="POST" action="delete"><br/>
+  <input type="submit" value="DELETE POST"></input>
+</form><br/>
+<button onclick="history.back()">GO BACK</button><br/><br/>
+<a href="/posts">GO TO POSTS</a><br/><br/>
+<a href="/users">GO TO USER LIST</a>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}

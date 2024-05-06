@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+Blogly Part II - Edit User
+{% endblock %}
+
+{% block header %}
+EDIT USER
+{% endblock %}
+
+
+{% block messages %}
+{% endblock %}
+{% block content %}
+<hr>
+<form method="POST">
+  <p>First Name: <input name="first_name" value="{{ user.first_name }}"></p>
+  <p>Middle Name: <input name="middle_name" value="{{ user.middle_name }}"></p>
+  <p>Last Name: <input name="last_name" value="{{ user.last_name }}"></p>
+<p>
+  <img src="{{ user.image_url }}"
+           style="width: 50px; max-width: 50px;
+           height: 50px; max-height:50px;"></img></p>
+  <p>Image URL: <input name="image_url" value="{{ user.image_url }}"></p>
+<hr>
+  <h2>Posts</h2>
+<hr>
+    {% if user.posts %}
+  <table>
+    {% for post in user.posts %}
+  <tr style="border: 2px solid black">
+      <td><a href="/posts/{{ post.id }}">{{ post.title }}</a>
+          {{ post.friendly_modified_on }}</td>
+  </tr>
+  {% endfor %}
+  </table>
+    {% endif %}
+<hr>
+  <input type="submit" value="SAVE"></input><br/><br/>
+<button onclick="history.back()">GO BACK</button><br/><br/>
+<a href="/posts">GO TO POSTS</a><br/><br/>
+<a href="/users">GO TO USER LIST</a>
+</form>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+{% endblock %}
